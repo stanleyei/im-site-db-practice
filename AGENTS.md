@@ -144,6 +144,5 @@ npx serve . -l 3000
 ## 本專案特有
 
 - `index.html` 由 `scripts/build-site.js` 依 `docs/private/site-data.js` 產生，不要直接手改 `index.html`；改完執行 `npm run site`。
-- `docs/private/` 不進版控，`index.html` 產物必須 commit。
 - 快取版本號在 `scripts/build-site.js` 的 `ASSET_VERSION`。
 - 畫面上不得出現任何資料表或欄位名稱。

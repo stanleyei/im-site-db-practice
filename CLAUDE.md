@@ -93,6 +93,5 @@
 ## 本專案特有
 
 - `index.html` 由 `scripts/build-site.js` 依 `docs/private/site-data.js` 產生，**不要直接手改 `index.html`**，改資料或版面請改產生器後執行 `npm run site`。
-- `docs/private/` 不進版控（講師解答、種子資料、資料來源），因此 `index.html` 這個產物必須 commit。
 - 快取版本號在 `scripts/build-site.js` 的 `ASSET_VERSION`，不在 `index.html` 直接改。
 - 畫面上**不得出現任何資料表或欄位名稱**，那是學生要自己推的。
