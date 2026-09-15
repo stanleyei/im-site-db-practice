@@ -21,7 +21,7 @@ if (!fs.existsSync(DATA_PATH)) {
 }
 
 const D = require(DATA_PATH);
-const ASSET_VERSION = process.env.ASSET_VERSION || '20260916-01';
+const ASSET_VERSION = process.env.ASSET_VERSION || '20260916-02';
 
 // ---------- 工具 ----------
 
@@ -596,12 +596,12 @@ const html = `<!DOCTYPE html>
         <span aria-hidden="true" class="flex size-10 items-center justify-center rounded-lg bg-white font-bold text-brand-navy">資</span>
         <span><span class="block text-eyebrow text-white/70">潮港科技大學</span><span class="block text-lg font-bold leading-tight">資訊管理系</span></span>
       </a>
-      <nav aria-label="主選單" class="-mx-4 w-[calc(100%+2rem)] overflow-x-auto px-4 sm:mx-0 sm:ml-auto sm:w-auto sm:px-0">
+      <nav aria-label="主選單" class="nav-scroll">
         <ul class="flex gap-1 whitespace-nowrap">
           ${NAV.map(([id, label]) => `<li><a href="#${id}" data-nav class="nav-tab">${label}</a></li>`).join('')}
         </ul>
+          <li class="ml-2"><a href="#admin" data-nav class="nav-tab border border-white/40">後台管理</a></li>
       </nav>
-      <a href="#admin" data-nav class="nav-tab border border-white/40 sm:ml-4">後台管理</a>
     </div>
   </header>
 
@@ -619,7 +619,7 @@ const html = `<!DOCTYPE html>
   </main>
   ${footer()}
 
-  <button id="go-top" class="fixed bottom-4 right-4 z-50 hidden size-14 cursor-pointer items-center justify-center rounded-full bg-brand-orange shadow-2xl transition hover:-translate-y-1 sm:bottom-8 sm:right-8" aria-label="回到頂部">
+  <button id="go-top" hidden class="fixed bottom-4 right-4 z-50 flex size-14 cursor-pointer items-center justify-center rounded-full bg-brand-orange shadow-2xl transition hover:-translate-y-1 sm:bottom-8 sm:right-8" aria-label="回到頂部">
     <img src="./images/icon/icon-arrow-up.svg" alt="" width="24" height="24" class="size-6" />
   </button>
 

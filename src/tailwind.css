@@ -64,10 +64,20 @@
 
   /* 主選單分頁：<a href="#screen">，JS 依 hash 切換 aria-current */
   .nav-tab {
-    @apply inline-flex min-h-11 items-center rounded-md px-3 text-sm font-medium text-white/85 transition hover:bg-white/10 hover:text-white;
+    @apply inline-flex min-h-11 items-center rounded-md px-2.5 text-sm lg:px-3 font-medium text-white/85 transition hover:bg-white/10 hover:text-white;
   }
   .nav-tab[aria-current="page"] {
     @apply bg-white text-brand-navy;
+  }
+  /*
+   * 分頁列在 lg 以下獨佔一列並可橫向捲動；負邊距與加寬是為了
+   * 讓捲動範圍貼齊視窗兩側，而不是停在 container 的內距處。
+   * 深色底上的預設捲軸太搶眼，改為細版並降低對比。
+   */
+  .nav-scroll {
+    @apply -mx-4 w-[calc(100%+2rem)] overflow-x-auto px-4 sm:-mx-6 sm:w-[calc(100%+3rem)] sm:px-6 lg:mx-0 lg:ml-auto lg:w-auto lg:px-0;
+    scrollbar-width: thin;
+    scrollbar-color: rgb(255 255 255 / 0.35) transparent;
   }
 
   .screen {
@@ -135,8 +145,9 @@
   }
 
   /* 資料表格 */
+  /* relative 讓表頭 sr-only 的絕對定位留在捲動容器內，否則會逃到 body 撐開整頁寬度 */
   .table-wrap {
-    @apply overflow-x-auto rounded-xl border border-line bg-white;
+    @apply relative overflow-x-auto rounded-xl border border-line bg-white;
   }
   .table {
     @apply w-full text-left text-sm;
