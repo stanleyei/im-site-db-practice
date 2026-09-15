@@ -145,17 +145,23 @@ const links = [
   { id: 6, category_id: 2, name: 'HeidiSQL', url: 'https://www.heidisql.com', open_new_window: 1, sort_order: 3 },
 ];
 
+const messageStatuses = [
+  { id: 1, name: '未處理', sort_order: 1 },
+  { id: 2, name: '處理中', sort_order: 2 },
+  { id: 3, name: '已回覆', sort_order: 3 },
+];
+
 const contactMessages = [
-  { id: 1, name: '吳同學', email: 'wu.student@example.com', subject: '轉學考報名問題', content: '想請問轉學考可以同時報名二年級與三年級嗎？', status: '已回覆', created_at: '2026-09-02 10:12:00', replied_at: '2026-09-03 09:30:00' },
-  { id: 2, name: '陳家長', email: 'chen.parent@example.com', subject: '新生住宿申請', content: '孩子今年入學，請問住宿申請的時程與方式？', status: '已回覆', created_at: '2026-09-05 15:40:00', replied_at: '2026-09-05 17:05:00' },
-  { id: 3, name: '劉先生', email: 'liu@brightstar.example.com', subject: '校園徵才合作洽詢', content: '本公司希望於 11 月至貴系舉辦徵才說明會，請問聯絡窗口為何？', status: '未處理', created_at: '2026-09-11 09:20:00', replied_at: null },
-  { id: 4, name: '林同學', email: 'lin.student@example.com', subject: '選課系統無法登入', content: '輸入學號密碼後一直顯示系統忙碌，已重試多次。', status: '處理中', created_at: '2026-09-14 08:05:00', replied_at: null },
-  { id: 5, name: '匿名', email: 'anon@example.com', subject: '資訊大樓電梯異音', content: '左側電梯上升時有明顯異音，建議儘速檢修。', status: '未處理', created_at: '2026-09-15 20:48:00', replied_at: null },
+  { id: 1, name: '吳同學', email: 'wu.student@example.com', subject: '轉學考報名問題', content: '想請問轉學考可以同時報名二年級與三年級嗎？', status_id: 3, created_at: '2026-09-02 10:12:00', replied_at: '2026-09-03 09:30:00' },
+  { id: 2, name: '陳家長', email: 'chen.parent@example.com', subject: '新生住宿申請', content: '孩子今年入學，請問住宿申請的時程與方式？', status_id: 3, created_at: '2026-09-05 15:40:00', replied_at: '2026-09-05 17:05:00' },
+  { id: 3, name: '劉先生', email: 'liu@brightstar.example.com', subject: '校園徵才合作洽詢', content: '本公司希望於 11 月至貴系舉辦徵才說明會，請問聯絡窗口為何？', status_id: 1, created_at: '2026-09-11 09:20:00', replied_at: null },
+  { id: 4, name: '林同學', email: 'lin.student@example.com', subject: '選課系統無法登入', content: '輸入學號密碼後一直顯示系統忙碌，已重試多次。', status_id: 2, created_at: '2026-09-14 08:05:00', replied_at: null },
+  { id: 5, name: '匿名', email: 'anon@example.com', subject: '資訊大樓電梯異音', content: '左側電梯上升時有明顯異音，建議儘速檢修。', status_id: 1, created_at: '2026-09-15 20:48:00', replied_at: null },
 ];
 
 module.exports = {
   TODAY,
   newsCategories, news, newsAttachments, tags, newsTags,
   downloadCategories, downloads, events, staffTitles, staff,
-  albums, photos, faqCategories, faqs, linkCategories, links, contactMessages,
+  albums, photos, faqCategories, faqs, linkCategories, links, messageStatuses, contactMessages,
 };

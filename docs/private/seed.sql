@@ -145,15 +145,22 @@ CREATE TABLE links (
 );
 
 -- ===== 意見信箱 =====
+CREATE TABLE message_statuses (
+  id         INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+  name       VARCHAR(20) NOT NULL,
+  sort_order INT NOT NULL DEFAULT 0
+);
+
 CREATE TABLE contact_messages (
   id         INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
   name       VARCHAR(50) NOT NULL,
   email      VARCHAR(100) NOT NULL,
   subject    VARCHAR(200) NOT NULL,
   content    TEXT NOT NULL,
-  status     ENUM('未處理', '處理中', '已回覆') NOT NULL DEFAULT '未處理',
+  status_id  INT UNSIGNED NOT NULL DEFAULT 1,
   created_at DATETIME NOT NULL,
-  replied_at DATETIME NULL
+  replied_at DATETIME NULL,
+  FOREIGN KEY (status_id) REFERENCES message_statuses(id)
 );
 
 -- ===== 種子資料 =====
@@ -267,9 +274,14 @@ INSERT INTO `links` (`id`, `category_id`, `name`, `url`, `open_new_window`, `sor
   (5, 2, 'drawSQL', 'https://drawsql.app', 1, 2),
   (6, 2, 'HeidiSQL', 'https://www.heidisql.com', 1, 3);
 
-INSERT INTO `contact_messages` (`id`, `name`, `email`, `subject`, `content`, `status`, `created_at`, `replied_at`) VALUES
-  (1, '吳同學', 'wu.student@example.com', '轉學考報名問題', '想請問轉學考可以同時報名二年級與三年級嗎？', '已回覆', '2026-09-02 10:12:00', '2026-09-03 09:30:00'),
-  (2, '陳家長', 'chen.parent@example.com', '新生住宿申請', '孩子今年入學，請問住宿申請的時程與方式？', '已回覆', '2026-09-05 15:40:00', '2026-09-05 17:05:00'),
-  (3, '劉先生', 'liu@brightstar.example.com', '校園徵才合作洽詢', '本公司希望於 11 月至貴系舉辦徵才說明會，請問聯絡窗口為何？', '未處理', '2026-09-11 09:20:00', NULL),
-  (4, '林同學', 'lin.student@example.com', '選課系統無法登入', '輸入學號密碼後一直顯示系統忙碌，已重試多次。', '處理中', '2026-09-14 08:05:00', NULL),
-  (5, '匿名', 'anon@example.com', '資訊大樓電梯異音', '左側電梯上升時有明顯異音，建議儘速檢修。', '未處理', '2026-09-15 20:48:00', NULL);
+INSERT INTO `message_statuses` (`id`, `name`, `sort_order`) VALUES
+  (1, '未處理', 1),
+  (2, '處理中', 2),
+  (3, '已回覆', 3);
+
+INSERT INTO `contact_messages` (`id`, `name`, `email`, `subject`, `content`, `status_id`, `created_at`, `replied_at`) VALUES
+  (1, '吳同學', 'wu.student@example.com', '轉學考報名問題', '想請問轉學考可以同時報名二年級與三年級嗎？', 3, '2026-09-02 10:12:00', '2026-09-03 09:30:00'),
+  (2, '陳家長', 'chen.parent@example.com', '新生住宿申請', '孩子今年入學，請問住宿申請的時程與方式？', 3, '2026-09-05 15:40:00', '2026-09-05 17:05:00'),
+  (3, '劉先生', 'liu@brightstar.example.com', '校園徵才合作洽詢', '本公司希望於 11 月至貴系舉辦徵才說明會，請問聯絡窗口為何？', 1, '2026-09-11 09:20:00', NULL),
+  (4, '林同學', 'lin.student@example.com', '選課系統無法登入', '輸入學號密碼後一直顯示系統忙碌，已重試多次。', 2, '2026-09-14 08:05:00', NULL),
+  (5, '匿名', 'anon@example.com', '資訊大樓電梯異音', '左側電梯上升時有明顯異音，建議儘速檢修。', 1, '2026-09-15 20:48:00', NULL);

@@ -408,6 +408,7 @@ function screenAdmin() {
   const allNews = [...D.news].sort((a, b) => a.id - b.id);
   const tagUse = (id) => D.newsTags.filter((t) => t.tag_id === id).length;
   const catUse = (id) => D.news.filter((n) => n.category_id === id).length;
+  const statusName = (id) => D.messageStatuses.find((s) => s.id === id).name;
   const statusBadge = (s) => (s === '已回覆' ? 'badge-ok' : s === '處理中' ? 'badge-warn' : 'badge-off');
 
   return `
@@ -507,7 +508,7 @@ function screenAdmin() {
                   <td class="min-w-32">${esc(m.subject)}</td>
                   <td class="min-w-56 text-muted">${esc(m.content)}</td>
                   <td class="whitespace-nowrap">${dtOf(m.created_at)}</td>
-                  <td><span class="${statusBadge(m.status)}">${esc(m.status)}</span></td>
+                  <td><span class="${statusBadge(statusName(m.status_id))}">${esc(statusName(m.status_id))}</span></td>
                   <td class="whitespace-nowrap">${m.replied_at ? dtOf(m.replied_at) : '—'}</td>
                 </tr>`).join('')}
               </tbody>
@@ -789,15 +790,22 @@ CREATE TABLE links (
 );
 
 -- ===== 意見信箱 =====
+CREATE TABLE message_statuses (
+  id         INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+  name       VARCHAR(20) NOT NULL,
+  sort_order INT NOT NULL DEFAULT 0
+);
+
 CREATE TABLE contact_messages (
   id         INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
   name       VARCHAR(50) NOT NULL,
   email      VARCHAR(100) NOT NULL,
   subject    VARCHAR(200) NOT NULL,
   content    TEXT NOT NULL,
-  status     ENUM('未處理', '處理中', '已回覆') NOT NULL DEFAULT '未處理',
+  status_id  INT UNSIGNED NOT NULL DEFAULT 1,
   created_at DATETIME NOT NULL,
-  replied_at DATETIME NULL
+  replied_at DATETIME NULL,
+  FOREIGN KEY (status_id) REFERENCES message_statuses(id)
 );
 
 -- ===== 種子資料 =====
@@ -817,6 +825,7 @@ ${insert('faq_categories', D.faqCategories)}
 ${insert('faqs', D.faqs)}
 ${insert('link_categories', D.linkCategories)}
 ${insert('links', D.links)}
+${insert('message_statuses', D.messageStatuses)}
 ${insert('contact_messages', D.contactMessages)}`;
 
 fs.writeFileSync(path.join(ROOT, 'docs', 'private', 'seed.sql'), seed);
@@ -824,6 +833,6 @@ console.log('✅ docs/private/seed.sql 已產生');
 
 const total = [
   D.newsCategories, D.news, D.newsAttachments, D.tags, D.newsTags, D.downloadCategories, D.downloads, D.events,
-  D.staffTitles, D.staff, D.albums, D.photos, D.faqCategories, D.faqs, D.linkCategories, D.links, D.contactMessages,
+  D.staffTitles, D.staff, D.albums, D.photos, D.faqCategories, D.faqs, D.linkCategories, D.links, D.messageStatuses, D.contactMessages,
 ].reduce((sum, t) => sum + t.length, 0);
-console.log(`   17 張表、${total} 筆資料`);
+console.log(`   18 張表、${total} 筆資料`);
