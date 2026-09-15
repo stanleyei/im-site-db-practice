@@ -584,7 +584,8 @@ const html = `<!DOCTYPE html>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet" />
-  <link rel="icon" type="image/png" sizes="48x48" href="./favicon.ico" />
+  <link rel="icon" type="image/x-icon" sizes="16x16 32x32 48x48" href="./favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="./images/icon/apple-touch-icon.png" />
   <link rel="stylesheet" href="./css/style.css?v=${ASSET_VERSION}" />
 </head>
 <body>
@@ -599,8 +600,8 @@ const html = `<!DOCTYPE html>
       <nav aria-label="主選單" class="nav-scroll">
         <ul class="flex gap-1 whitespace-nowrap">
           ${NAV.map(([id, label]) => `<li><a href="#${id}" data-nav class="nav-tab">${label}</a></li>`).join('')}
-        </ul>
           <li class="ml-2"><a href="#admin" data-nav class="nav-tab border border-white/40">後台管理</a></li>
+        </ul>
       </nav>
     </div>
   </header>
