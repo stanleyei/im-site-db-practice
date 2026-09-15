@@ -1,0 +1,161 @@
+@import "tailwindcss";
+
+/* index.html 由 scripts/build-site.js 產生，Tailwind 仍直接掃描它取得 class */
+@source "../index.html";
+@source "../js/main.js";
+
+@theme {
+  /* 字體 */
+  --font-sans: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+
+  /*
+   * 語意色 token。學校網站採深藍主色搭配暖橘強調色。
+   * brand-navy 搭配白字約 11:1；brand-blue 搭配白字約 6.2:1，可作按鈕底色；
+   * brand-orange 搭配白字約 4.8:1，可作一般文字底色；
+   * ink 為主要文字色（白底 15:1），muted 為次要文字（白底 7:1）；
+   * surface 為頁面底色，line 為分隔線與邊框（純裝飾，不承載資訊）。
+   */
+  --color-brand-navy: #14365c;
+  --color-brand-blue: #1f5fa8;
+  --color-brand-orange: #c0501f;
+  --color-ink: #1f2937;
+  --color-muted: #4b5563;
+  --color-surface: #f4f6f9;
+  --color-line: #d9dee5;
+
+  /* 狀態色：與文字標籤並用，不單靠顏色傳達（WCAG 1.4.1）。文字在白底皆 ≥ 4.5:1 */
+  --color-state-ok: #1b6b3a;
+  --color-state-warn: #8a5a00;
+  --color-state-off: #6b7280;
+
+  /* 反覆出現的細節字級：分類標籤、日期、附件大小 */
+  --text-eyebrow: 0.75rem;
+  --text-eyebrow--line-height: 1.4;
+}
+
+@layer base {
+  body {
+    font-family: var(--font-sans);
+    background-color: var(--color-surface);
+    color: var(--color-ink);
+  }
+
+  /* 鍵盤焦點統一可見（WCAG 2.4.7） */
+  :focus-visible {
+    outline: 3px solid var(--color-brand-orange);
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer components {
+  .container-site {
+    @apply mx-auto w-full max-w-6xl px-4 sm:px-6;
+  }
+
+  /* 主選單分頁：<a href="#screen">，JS 依 hash 切換 aria-current */
+  .nav-tab {
+    @apply inline-flex min-h-11 items-center rounded-md px-3 text-sm font-medium text-white/85 transition hover:bg-white/10 hover:text-white;
+  }
+  .nav-tab[aria-current="page"] {
+    @apply bg-white text-brand-navy;
+  }
+
+  .screen {
+    @apply py-10;
+  }
+
+  .section-title {
+    @apply mb-6 flex items-center gap-3 text-2xl font-bold text-brand-navy;
+  }
+  .section-title::before {
+    content: "";
+    @apply inline-block h-7 w-1.5 rounded bg-brand-orange;
+  }
+
+  .card {
+    @apply rounded-xl border border-line bg-white p-5 shadow-sm;
+  }
+
+  .badge,
+  .badge-cat,
+  .badge-top,
+  .badge-tag,
+  .badge-ok,
+  .badge-warn,
+  .badge-off {
+    @apply inline-flex items-center rounded-full border px-2.5 py-0.5 text-eyebrow font-medium whitespace-nowrap;
+  }
+  .badge-cat {
+    @apply border-brand-blue/30 bg-brand-blue/10 text-brand-blue;
+  }
+  .badge-top {
+    @apply border-brand-orange/40 bg-brand-orange text-white;
+  }
+  .badge-tag {
+    @apply border-line bg-surface text-muted;
+  }
+  .badge-ok {
+    @apply border-state-ok/30 bg-state-ok/10 text-state-ok;
+  }
+  .badge-warn {
+    @apply border-state-warn/30 bg-state-warn/10 text-state-warn;
+  }
+  .badge-off {
+    @apply border-state-off/30 bg-state-off/10 text-state-off;
+  }
+
+  .btn,
+  .btn-primary,
+  .btn-outline {
+    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-lg px-4 font-medium transition;
+  }
+  .btn-primary {
+    @apply bg-brand-blue text-white hover:bg-brand-navy;
+  }
+  .btn-outline {
+    @apply border border-brand-blue text-brand-blue hover:bg-brand-blue/10;
+  }
+
+  /* 篩選膠囊：<button aria-pressed> */
+  .chip {
+    @apply inline-flex min-h-11 items-center rounded-full border border-line bg-white px-4 text-sm text-muted transition hover:border-brand-blue hover:text-brand-blue;
+  }
+  .chip[aria-pressed="true"] {
+    @apply border-brand-navy bg-brand-navy text-white;
+  }
+
+  /* 資料表格 */
+  .table-wrap {
+    @apply overflow-x-auto rounded-xl border border-line bg-white;
+  }
+  .table {
+    @apply w-full text-left text-sm;
+  }
+  .table th {
+    @apply whitespace-nowrap bg-surface px-3 py-3 font-semibold text-brand-navy;
+  }
+  .table td {
+    @apply border-t border-line px-3 py-3 align-top;
+  }
+  .table .num {
+    @apply text-right tabular-nums;
+  }
+
+  .meta {
+    @apply text-eyebrow text-muted;
+  }
+
+  .field {
+    @apply mt-1 block w-full min-h-11 rounded-lg border border-line bg-white px-3 py-2 text-ink;
+  }
+}

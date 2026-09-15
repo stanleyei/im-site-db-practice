@@ -1,0 +1,1162 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; media-src 'self'; connect-src 'self'; object-src 'none'; frame-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests" />
+  <title>資訊管理系｜資料庫設計練習網站</title>
+  <meta name="description" content="供資料庫課程練習「看畫面設計資料表」的虛構系所網站，含最新消息、下載專區、活動、師資、相簿、常見問題與後台管理畫面。" />
+  <meta name="author" content="資料庫課程" />
+  <meta property="og:site_name" content="資訊管理系 練習網站" />
+  <meta property="og:title" content="資訊管理系｜資料庫設計練習網站" />
+  <meta property="og:image" content="./images/og.jpg" />
+  <meta property="og:image:alt" content="資訊大樓外觀與資訊管理系字樣" />
+  <meta property="og:description" content="看畫面設計資料庫：從網站畫面反推資料表與欄位，再以 SQL 驗證設計。" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/png" sizes="48x48" href="./favicon.ico" />
+  <link rel="stylesheet" href="./css/style.css?v=20260916-01" />
+</head>
+<body>
+  <a href="#main" class="sr-only z-60 rounded-lg bg-brand-orange px-6 py-3 font-bold text-white focus:not-sr-only focus:fixed focus:left-4 focus:top-4">跳至主要內容</a>
+
+  <header class="bg-brand-navy text-white">
+    <div class="container-site flex flex-wrap items-center gap-y-2 py-3">
+      <a href="#home" class="flex min-h-11 items-center gap-3">
+        <span aria-hidden="true" class="flex size-10 items-center justify-center rounded-lg bg-white font-bold text-brand-navy">資</span>
+        <span><span class="block text-eyebrow text-white/70">潮港科技大學</span><span class="block text-lg font-bold leading-tight">資訊管理系</span></span>
+      </a>
+      <nav aria-label="主選單" class="-mx-4 w-[calc(100%+2rem)] overflow-x-auto px-4 sm:mx-0 sm:ml-auto sm:w-auto sm:px-0">
+        <ul class="flex gap-1 whitespace-nowrap">
+          <li><a href="#home" data-nav class="nav-tab">首頁</a></li><li><a href="#news" data-nav class="nav-tab">最新消息</a></li><li><a href="#downloads" data-nav class="nav-tab">下載專區</a></li><li><a href="#events" data-nav class="nav-tab">活動行事曆</a></li><li><a href="#staff" data-nav class="nav-tab">師資介紹</a></li><li><a href="#albums" data-nav class="nav-tab">系所相簿</a></li><li><a href="#faq" data-nav class="nav-tab">常見問題</a></li><li><a href="#contact" data-nav class="nav-tab">意見信箱</a></li>
+        </ul>
+      </nav>
+      <a href="#admin" data-nav class="nav-tab border border-white/40 sm:ml-4">後台管理</a>
+    </div>
+  </header>
+
+  <main id="main">
+    
+    <section id="home" class="screen pt-0" aria-labelledby="home-title">
+      <div class="relative isolate overflow-hidden bg-brand-navy text-white">
+        <img src="./images/photo/hero.webp" alt="" width="1536" height="1024" class="absolute inset-0 -z-10 size-full object-cover opacity-40" />
+        <div class="container-site py-20 sm:py-28">
+          <p class="text-sm font-medium tracking-widest text-white/80">DEPARTMENT OF INFORMATION MANAGEMENT</p>
+          <h1 id="home-title" class="mt-3 text-4xl font-bold sm:text-5xl">資訊管理系</h1>
+          <p class="mt-4 max-w-xl text-lg text-white/90">結合資訊科技與管理知識，培育能以資料驅動決策、以系統解決問題的實務人才。</p>
+          <div class="mt-8 flex flex-wrap gap-3">
+            <a href="#news" class="btn-primary">最新消息</a>
+            <a href="#events" class="btn border border-white/70 text-white hover:bg-white/10">近期活動</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="container-site mt-12 grid gap-10 lg:grid-cols-3">
+        <div class="lg:col-span-2 space-y-10">
+          <div>
+            <h2 class="section-title">置頂公告</h2>
+            <ul class="space-y-4">
+      <li data-category="招生資訊" class="card flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+        <div class="min-w-0 space-y-2">
+          <div class="flex flex-wrap items-center gap-2">
+            <span class="badge-top">置頂</span>
+            <span class="badge-cat">招生資訊</span>
+            <span class="meta">發布日期 2026-09-01</span>
+          </div>
+          <p class="text-lg leading-snug"><span class="font-semibold text-brand-navy">116 學年度碩士班甄試招生說明會</span></p>
+          <ul class="flex flex-wrap gap-1.5" aria-label="標籤"><li><span class="badge-tag">#招生</span></li></ul>
+        </div>
+        <dl class="flex shrink-0 gap-5 text-sm text-muted sm:flex-col sm:items-end sm:gap-1">
+          <div><dt class="sr-only">點閱數</dt><dd>點閱 863</dd></div>
+          <div><dt class="sr-only">附件數</dt><dd>附件 1 個</dd></div>
+        </dl>
+      </li>
+      <li data-category="系所公告" class="card flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+        <div class="min-w-0 space-y-2">
+          <div class="flex flex-wrap items-center gap-2">
+            <span class="badge-top">置頂</span>
+            <span class="badge-cat">系所公告</span>
+            <span class="meta">發布日期 2026-08-25</span>
+          </div>
+          <p class="text-lg leading-snug"><span class="font-semibold text-brand-navy">115 學年度第 1 學期選課注意事項</span></p>
+          
+        </div>
+        <dl class="flex shrink-0 gap-5 text-sm text-muted sm:flex-col sm:items-end sm:gap-1">
+          <div><dt class="sr-only">點閱數</dt><dd>點閱 1,250</dd></div>
+          <div><dt class="sr-only">附件數</dt><dd>附件 2 個</dd></div>
+        </dl>
+      </li></ul>
+          </div>
+          <div>
+            <div class="flex items-center justify-between">
+              <h2 class="section-title">最新消息</h2>
+              <a href="#news" class="text-sm font-medium text-brand-blue hover:underline">更多消息</a>
+            </div>
+            <ul class="space-y-4">
+      <li data-category="招生資訊" class="card flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+        <div class="min-w-0 space-y-2">
+          <div class="flex flex-wrap items-center gap-2">
+            
+            <span class="badge-cat">招生資訊</span>
+            <span class="meta">發布日期 2026-09-15</span>
+          </div>
+          <p class="text-lg leading-snug"><a href="#news-detail" class="font-semibold text-brand-navy underline-offset-2 hover:underline">116 學年度大學部轉學考招生簡章公告</a></p>
+          <ul class="flex flex-wrap gap-1.5" aria-label="標籤"><li><span class="badge-tag">#招生</span></li></ul>
+        </div>
+        <dl class="flex shrink-0 gap-5 text-sm text-muted sm:flex-col sm:items-end sm:gap-1">
+          <div><dt class="sr-only">點閱數</dt><dd>點閱 89</dd></div>
+          <div><dt class="sr-only">附件數</dt><dd>附件 2 個</dd></div>
+        </dl>
+      </li>
+      <li data-category="就業實習" class="card flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+        <div class="min-w-0 space-y-2">
+          <div class="flex flex-wrap items-center gap-2">
+            
+            <span class="badge-cat">就業實習</span>
+            <span class="meta">發布日期 2026-09-14</span>
+          </div>
+          <p class="text-lg leading-snug"><span class="font-semibold text-brand-navy">智星科技 2027 校園徵才職缺資訊</span></p>
+          <ul class="flex flex-wrap gap-1.5" aria-label="標籤"><li><span class="badge-tag">#實習</span></li></ul>
+        </div>
+        <dl class="flex shrink-0 gap-5 text-sm text-muted sm:flex-col sm:items-end sm:gap-1">
+          <div><dt class="sr-only">點閱數</dt><dd>點閱 154</dd></div>
+          
+        </dl>
+      </li>
+      <li data-category="競賽活動" class="card flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+        <div class="min-w-0 space-y-2">
+          <div class="flex flex-wrap items-center gap-2">
+            
+            <span class="badge-cat">競賽活動</span>
+            <span class="meta">發布日期 2026-09-12</span>
+          </div>
+          <p class="text-lg leading-snug"><span class="font-semibold text-brand-navy">第 12 屆資管盃程式設計競賽得獎名單</span></p>
+          <ul class="flex flex-wrap gap-1.5" aria-label="標籤"><li><span class="badge-tag">#競賽</span></li></ul>
+        </div>
+        <dl class="flex shrink-0 gap-5 text-sm text-muted sm:flex-col sm:items-end sm:gap-1">
+          <div><dt class="sr-only">點閱數</dt><dd>點閱 677</dd></div>
+          <div><dt class="sr-only">附件數</dt><dd>附件 1 個</dd></div>
+        </dl>
+      </li>
+      <li data-category="就業實習" class="card flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+        <div class="min-w-0 space-y-2">
+          <div class="flex flex-wrap items-center gap-2">
+            
+            <span class="badge-cat">就業實習</span>
+            <span class="meta">發布日期 2026-09-08</span>
+          </div>
+          <p class="text-lg leading-snug"><span class="font-semibold text-brand-navy">暑期實習成果發表會圓滿落幕</span></p>
+          <ul class="flex flex-wrap gap-1.5" aria-label="標籤"><li><span class="badge-tag">#實習</span></li></ul>
+        </div>
+        <dl class="flex shrink-0 gap-5 text-sm text-muted sm:flex-col sm:items-end sm:gap-1">
+          <div><dt class="sr-only">點閱數</dt><dd>點閱 305</dd></div>
+          
+        </dl>
+      </li></ul>
+          </div>
+        </div>
+
+        <aside class="space-y-10">
+          <div>
+            <h2 class="section-title">近期活動</h2>
+            <ul class="space-y-3">
+              
+              <li class="card flex gap-4">
+                <div class="flex w-14 shrink-0 flex-col items-center rounded-lg bg-brand-blue/10 py-2 text-brand-navy">
+                  <span class="text-eyebrow font-semibold">09 月</span>
+                  <span class="text-2xl font-bold leading-none">24</span>
+                </div>
+                <div class="min-w-0">
+                  <p class="font-semibold text-brand-navy">碩士班甄試招生說明會</p>
+                  <p class="meta mt-1">14:00 起 ・ 資訊大樓 IB301</p>
+                </div>
+              </li>
+              <li class="card flex gap-4">
+                <div class="flex w-14 shrink-0 flex-col items-center rounded-lg bg-brand-blue/10 py-2 text-brand-navy">
+                  <span class="text-eyebrow font-semibold">10 月</span>
+                  <span class="text-2xl font-bold leading-none">01</span>
+                </div>
+                <div class="min-w-0">
+                  <p class="font-semibold text-brand-navy">業界講座：資料工程師的一天</p>
+                  <p class="meta mt-1">13:30 起 ・ 資訊大樓 IB201</p>
+                </div>
+              </li>
+              <li class="card flex gap-4">
+                <div class="flex w-14 shrink-0 flex-col items-center rounded-lg bg-brand-blue/10 py-2 text-brand-navy">
+                  <span class="text-eyebrow font-semibold">10 月</span>
+                  <span class="text-2xl font-bold leading-none">19</span>
+                </div>
+                <div class="min-w-0">
+                  <p class="font-semibold text-brand-navy">資管週專題成果展</p>
+                  <p class="meta mt-1">09:00 起 ・ 學生活動中心 1F</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h2 class="section-title">熱門下載</h2>
+            <ol class="card divide-y divide-line p-0">
+              
+              <li class="flex items-center gap-3 px-5 py-3">
+                <span class="text-xl font-bold text-brand-orange">1</span>
+                <div class="min-w-0 flex-1">
+                  <p class="truncate font-medium">115 學年度課程地圖</p>
+                  <p class="meta">下載 2,210 次</p>
+                </div>
+              </li>
+              <li class="flex items-center gap-3 px-5 py-3">
+                <span class="text-xl font-bold text-brand-orange">2</span>
+                <div class="min-w-0 flex-1">
+                  <p class="truncate font-medium">HeidiSQL 安裝與連線說明</p>
+                  <p class="meta">下載 1,502 次</p>
+                </div>
+              </li>
+              <li class="flex items-center gap-3 px-5 py-3">
+                <span class="text-xl font-bold text-brand-orange">3</span>
+                <div class="min-w-0 flex-1">
+                  <p class="truncate font-medium">學生請假單</p>
+                  <p class="meta">下載 1,320 次</p>
+                </div>
+              </li>
+            </ol>
+          </div>
+        </aside>
+      </div>
+    </section>
+    
+    <section id="news" class="screen" aria-labelledby="news-title">
+      <div class="container-site">
+        <h1 id="news-title" class="section-title">最新消息</h1>
+        <div class="mb-6 flex flex-wrap gap-2" role="group" aria-label="依分類篩選">
+          <button type="button" class="chip" data-filter="all" aria-pressed="true">全部（7）</button>
+          <button type="button" class="chip" data-filter="系所公告" aria-pressed="false">系所公告（1）</button><button type="button" class="chip" data-filter="招生資訊" aria-pressed="false">招生資訊（2）</button><button type="button" class="chip" data-filter="競賽活動" aria-pressed="false">競賽活動（2）</button><button type="button" class="chip" data-filter="就業實習" aria-pressed="false">就業實習（2）</button><button type="button" class="chip" data-filter="學術演講" aria-pressed="false">學術演講（0）</button>
+        </div>
+        <ul class="space-y-4">
+      <li data-category="招生資訊" class="card flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+        <div class="min-w-0 space-y-2">
+          <div class="flex flex-wrap items-center gap-2">
+            <span class="badge-top">置頂</span>
+            <span class="badge-cat">招生資訊</span>
+            <span class="meta">發布日期 2026-09-01</span>
+          </div>
+          <p class="text-lg leading-snug"><span class="font-semibold text-brand-navy">116 學年度碩士班甄試招生說明會</span></p>
+          <ul class="flex flex-wrap gap-1.5" aria-label="標籤"><li><span class="badge-tag">#招生</span></li></ul>
+        </div>
+        <dl class="flex shrink-0 gap-5 text-sm text-muted sm:flex-col sm:items-end sm:gap-1">
+          <div><dt class="sr-only">點閱數</dt><dd>點閱 863</dd></div>
+          <div><dt class="sr-only">附件數</dt><dd>附件 1 個</dd></div>
+        </dl>
+      </li>
+      <li data-category="系所公告" class="card flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+        <div class="min-w-0 space-y-2">
+          <div class="flex flex-wrap items-center gap-2">
+            <span class="badge-top">置頂</span>
+            <span class="badge-cat">系所公告</span>
+            <span class="meta">發布日期 2026-08-25</span>
+          </div>
+          <p class="text-lg leading-snug"><span class="font-semibold text-brand-navy">115 學年度第 1 學期選課注意事項</span></p>
+          
+        </div>
+        <dl class="flex shrink-0 gap-5 text-sm text-muted sm:flex-col sm:items-end sm:gap-1">
+          <div><dt class="sr-only">點閱數</dt><dd>點閱 1,250</dd></div>
+          <div><dt class="sr-only">附件數</dt><dd>附件 2 個</dd></div>
+        </dl>
+      </li>
+      <li data-category="招生資訊" class="card flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+        <div class="min-w-0 space-y-2">
+          <div class="flex flex-wrap items-center gap-2">
+            
+            <span class="badge-cat">招生資訊</span>
+            <span class="meta">發布日期 2026-09-15</span>
+          </div>
+          <p class="text-lg leading-snug"><a href="#news-detail" class="font-semibold text-brand-navy underline-offset-2 hover:underline">116 學年度大學部轉學考招生簡章公告</a></p>
+          <ul class="flex flex-wrap gap-1.5" aria-label="標籤"><li><span class="badge-tag">#招生</span></li></ul>
+        </div>
+        <dl class="flex shrink-0 gap-5 text-sm text-muted sm:flex-col sm:items-end sm:gap-1">
+          <div><dt class="sr-only">點閱數</dt><dd>點閱 89</dd></div>
+          <div><dt class="sr-only">附件數</dt><dd>附件 2 個</dd></div>
+        </dl>
+      </li>
+      <li data-category="就業實習" class="card flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+        <div class="min-w-0 space-y-2">
+          <div class="flex flex-wrap items-center gap-2">
+            
+            <span class="badge-cat">就業實習</span>
+            <span class="meta">發布日期 2026-09-14</span>
+          </div>
+          <p class="text-lg leading-snug"><span class="font-semibold text-brand-navy">智星科技 2027 校園徵才職缺資訊</span></p>
+          <ul class="flex flex-wrap gap-1.5" aria-label="標籤"><li><span class="badge-tag">#實習</span></li></ul>
+        </div>
+        <dl class="flex shrink-0 gap-5 text-sm text-muted sm:flex-col sm:items-end sm:gap-1">
+          <div><dt class="sr-only">點閱數</dt><dd>點閱 154</dd></div>
+          
+        </dl>
+      </li>
+      <li data-category="競賽活動" class="card flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+        <div class="min-w-0 space-y-2">
+          <div class="flex flex-wrap items-center gap-2">
+            
+            <span class="badge-cat">競賽活動</span>
+            <span class="meta">發布日期 2026-09-12</span>
+          </div>
+          <p class="text-lg leading-snug"><span class="font-semibold text-brand-navy">第 12 屆資管盃程式設計競賽得獎名單</span></p>
+          <ul class="flex flex-wrap gap-1.5" aria-label="標籤"><li><span class="badge-tag">#競賽</span></li></ul>
+        </div>
+        <dl class="flex shrink-0 gap-5 text-sm text-muted sm:flex-col sm:items-end sm:gap-1">
+          <div><dt class="sr-only">點閱數</dt><dd>點閱 677</dd></div>
+          <div><dt class="sr-only">附件數</dt><dd>附件 1 個</dd></div>
+        </dl>
+      </li>
+      <li data-category="就業實習" class="card flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+        <div class="min-w-0 space-y-2">
+          <div class="flex flex-wrap items-center gap-2">
+            
+            <span class="badge-cat">就業實習</span>
+            <span class="meta">發布日期 2026-09-08</span>
+          </div>
+          <p class="text-lg leading-snug"><span class="font-semibold text-brand-navy">暑期實習成果發表會圓滿落幕</span></p>
+          <ul class="flex flex-wrap gap-1.5" aria-label="標籤"><li><span class="badge-tag">#實習</span></li></ul>
+        </div>
+        <dl class="flex shrink-0 gap-5 text-sm text-muted sm:flex-col sm:items-end sm:gap-1">
+          <div><dt class="sr-only">點閱數</dt><dd>點閱 305</dd></div>
+          
+        </dl>
+      </li>
+      <li data-category="競賽活動" class="card flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+        <div class="min-w-0 space-y-2">
+          <div class="flex flex-wrap items-center gap-2">
+            
+            <span class="badge-cat">競賽活動</span>
+            <span class="meta">發布日期 2026-09-05</span>
+          </div>
+          <p class="text-lg leading-snug"><span class="font-semibold text-brand-navy">2026 全國大專校院資訊應用服務創新競賽 徵件開始</span></p>
+          <ul class="flex flex-wrap gap-1.5" aria-label="標籤"><li><span class="badge-tag">#競賽</span></li><li><span class="badge-tag">#獎學金</span></li></ul>
+        </div>
+        <dl class="flex shrink-0 gap-5 text-sm text-muted sm:flex-col sm:items-end sm:gap-1">
+          <div><dt class="sr-only">點閱數</dt><dd>點閱 412</dd></div>
+          
+        </dl>
+      </li></ul>
+        <p id="news-empty" class="card text-center text-muted" hidden>此分類目前沒有公告。</p>
+      </div>
+    </section>
+    
+    <section id="news-detail" class="screen" aria-labelledby="detail-title">
+      <div class="container-site max-w-3xl">
+        <nav aria-label="麵包屑" class="meta mb-4"><a href="#home" class="hover:underline">首頁</a> ／ <a href="#news" class="hover:underline">最新消息</a> ／ 招生資訊</nav>
+        <article class="card p-6 sm:p-8">
+          <div class="flex flex-wrap items-center gap-2">
+            <span class="badge-cat">招生資訊</span>
+            <ul class="flex flex-wrap gap-1.5" aria-label="標籤"><li><span class="badge-tag">#招生</span></li></ul>
+          </div>
+          <h1 id="detail-title" class="mt-3 text-2xl font-bold text-brand-navy sm:text-3xl">116 學年度大學部轉學考招生簡章公告</h1>
+          <p class="meta mt-3">發布時間 2026-09-15 17:00 ・ 點閱 89 ・ 公告編號 8</p>
+          <div class="mt-6 leading-relaxed">本系 116 學年度轉學考招收二年級 5 名、三年級 3 名，報名日期為 10/20 至 10/28，考試科目為程式設計與資料庫系統。簡章與報名表請見附件。</div>
+          <h2 class="mt-8 text-lg font-bold text-brand-navy">附件下載</h2>
+          <ul class="mt-3 divide-y divide-line rounded-lg border border-line">
+            
+            <li class="flex items-center justify-between gap-4 px-4 py-3">
+              <span class="min-w-0 truncate"><span class="mr-2 rounded bg-surface px-1.5 py-0.5 text-eyebrow font-semibold text-muted">PDF</span>轉學考招生簡章.pdf</span>
+              <span class="meta shrink-0">1.3 MB</span>
+            </li>
+            <li class="flex items-center justify-between gap-4 px-4 py-3">
+              <span class="min-w-0 truncate"><span class="mr-2 rounded bg-surface px-1.5 py-0.5 text-eyebrow font-semibold text-muted">DOCX</span>轉學考報名表.docx</span>
+              <span class="meta shrink-0">64 KB</span>
+            </li>
+          </ul>
+          <p class="meta mt-6">本公告展示至 2026-10-31</p>
+        </article>
+        <p class="mt-6"><a href="#news" class="btn-outline">回列表</a></p>
+      </div>
+    </section>
+    
+    <section id="downloads" class="screen" aria-labelledby="downloads-title">
+      <div class="container-site space-y-10">
+        <h1 id="downloads-title" class="section-title">下載專區</h1>
+        
+        <div>
+          <h2 class="mb-3 text-xl font-bold text-brand-navy">表單下載</h2>
+          <div class="table-wrap">
+            <table class="table">
+              <thead><tr><th scope="col">檔案名稱</th><th scope="col">格式</th><th scope="col" class="num">大小</th><th scope="col" class="num">下載次數</th><th scope="col">更新日期</th><th scope="col"><span class="sr-only">操作</span></th></tr></thead>
+              <tbody>
+              
+                <tr>
+                  <td><p class="font-medium">學生請假單</p><p class="meta">leave-form.docx</p></td>
+                  <td>DOCX</td>
+                  <td class="num">48 KB</td>
+                  <td class="num">1,320</td>
+                  <td class="whitespace-nowrap">2026-02-10</td>
+                  <td><a href="#downloads" class="btn-outline py-1 text-sm" aria-label="下載 學生請假單">下載</a></td>
+                </tr>
+                <tr>
+                  <td><p class="font-medium">專題指導教授同意書</p><p class="meta">project-consent.pdf</p></td>
+                  <td>PDF</td>
+                  <td class="num">120 KB</td>
+                  <td class="num">864</td>
+                  <td class="whitespace-nowrap">2026-06-01</td>
+                  <td><a href="#downloads" class="btn-outline py-1 text-sm" aria-label="下載 專題指導教授同意書">下載</a></td>
+                </tr>
+                <tr>
+                  <td><p class="font-medium">畢業離校程序單</p><p class="meta">graduation-checklist.pdf</p></td>
+                  <td>PDF</td>
+                  <td class="num">96 KB</td>
+                  <td class="num">455</td>
+                  <td class="whitespace-nowrap">2026-05-20</td>
+                  <td><a href="#downloads" class="btn-outline py-1 text-sm" aria-label="下載 畢業離校程序單">下載</a></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div>
+          <h2 class="mb-3 text-xl font-bold text-brand-navy">課程資料</h2>
+          <div class="table-wrap">
+            <table class="table">
+              <thead><tr><th scope="col">檔案名稱</th><th scope="col">格式</th><th scope="col" class="num">大小</th><th scope="col" class="num">下載次數</th><th scope="col">更新日期</th><th scope="col"><span class="sr-only">操作</span></th></tr></thead>
+              <tbody>
+              
+                <tr>
+                  <td><p class="font-medium">115 學年度課程地圖</p><p class="meta">course-map-115.pdf</p></td>
+                  <td>PDF</td>
+                  <td class="num">3.0 MB</td>
+                  <td class="num">2,210</td>
+                  <td class="whitespace-nowrap">2026-08-20</td>
+                  <td><a href="#downloads" class="btn-outline py-1 text-sm" aria-label="下載 115 學年度課程地圖">下載</a></td>
+                </tr>
+                <tr>
+                  <td><p class="font-medium">資料庫系統課程大綱</p><p class="meta">db-syllabus.pdf</p></td>
+                  <td>PDF</td>
+                  <td class="num">256 KB</td>
+                  <td class="num">978</td>
+                  <td class="whitespace-nowrap">2026-09-01</td>
+                  <td><a href="#downloads" class="btn-outline py-1 text-sm" aria-label="下載 資料庫系統課程大綱">下載</a></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div>
+          <h2 class="mb-3 text-xl font-bold text-brand-navy">軟體資源</h2>
+          <div class="table-wrap">
+            <table class="table">
+              <thead><tr><th scope="col">檔案名稱</th><th scope="col">格式</th><th scope="col" class="num">大小</th><th scope="col" class="num">下載次數</th><th scope="col">更新日期</th><th scope="col"><span class="sr-only">操作</span></th></tr></thead>
+              <tbody>
+              
+                <tr>
+                  <td><p class="font-medium">HeidiSQL 安裝與連線說明</p><p class="meta">heidisql-install.pdf</p></td>
+                  <td>PDF</td>
+                  <td class="num">1.8 MB</td>
+                  <td class="num">1,502</td>
+                  <td class="whitespace-nowrap">2026-09-10</td>
+                  <td><a href="#downloads" class="btn-outline py-1 text-sm" aria-label="下載 HeidiSQL 安裝與連線說明">下載</a></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <section id="events" class="screen" aria-labelledby="events-title">
+      <div class="container-site">
+        <h1 id="events-title" class="section-title">活動行事曆</h1>
+        <p class="meta mb-6">以下為 2026 年下半年活動，日期以台灣時間為準。</p>
+        <ol class="space-y-4">
+          
+          <li class="card flex flex-col gap-4 sm:flex-row">
+            <div class="flex w-20 shrink-0 flex-col items-center rounded-lg bg-surface text-state-off py-3">
+              <span class="text-eyebrow font-semibold">2026/09</span>
+              <span class="text-3xl font-bold leading-none">07</span>
+            </div>
+            <div class="min-w-0 flex-1">
+              <div class="flex flex-wrap items-center gap-2">
+                <h2 class="text-lg font-bold text-brand-navy">新生始業式</h2>
+                <span class="badge-off">已結束</span>
+              </div>
+              <dl class="mt-2 grid gap-x-6 gap-y-1 text-sm text-muted sm:grid-cols-2">
+                <div class="flex gap-2"><dt class="shrink-0 font-medium">時間</dt><dd>2026-09-07 09:00 – 12:00</dd></div>
+                <div class="flex gap-2"><dt class="shrink-0 font-medium">地點</dt><dd>國際會議廳</dd></div>
+                <div class="flex gap-2"><dt class="shrink-0 font-medium">報名</dt><dd>免報名，自由入場</dd></div>
+              </dl>
+              <p class="mt-3 text-sm">大一新生必到，介紹系所修業規定、導師制度與校園資源。</p>
+            </div>
+          </li>
+          <li class="card flex flex-col gap-4 sm:flex-row">
+            <div class="flex w-20 shrink-0 flex-col items-center rounded-lg bg-brand-blue/10 text-brand-navy py-3">
+              <span class="text-eyebrow font-semibold">2026/09</span>
+              <span class="text-3xl font-bold leading-none">24</span>
+            </div>
+            <div class="min-w-0 flex-1">
+              <div class="flex flex-wrap items-center gap-2">
+                <h2 class="text-lg font-bold text-brand-navy">碩士班甄試招生說明會</h2>
+                
+              </div>
+              <dl class="mt-2 grid gap-x-6 gap-y-1 text-sm text-muted sm:grid-cols-2">
+                <div class="flex gap-2"><dt class="shrink-0 font-medium">時間</dt><dd>2026-09-24 14:00 – 16:00</dd></div>
+                <div class="flex gap-2"><dt class="shrink-0 font-medium">地點</dt><dd>資訊大樓 IB301</dd></div>
+                <div class="flex gap-2"><dt class="shrink-0 font-medium">報名</dt><dd>2026-09-22 截止</dd></div>
+              </dl>
+              <p class="mt-3 text-sm">介紹研究方向、修業規定與獎學金，並開放 Q&amp;A。</p>
+            </div>
+          </li>
+          <li class="card flex flex-col gap-4 sm:flex-row">
+            <div class="flex w-20 shrink-0 flex-col items-center rounded-lg bg-brand-blue/10 text-brand-navy py-3">
+              <span class="text-eyebrow font-semibold">2026/10</span>
+              <span class="text-3xl font-bold leading-none">01</span>
+            </div>
+            <div class="min-w-0 flex-1">
+              <div class="flex flex-wrap items-center gap-2">
+                <h2 class="text-lg font-bold text-brand-navy">業界講座：資料工程師的一天</h2>
+                
+              </div>
+              <dl class="mt-2 grid gap-x-6 gap-y-1 text-sm text-muted sm:grid-cols-2">
+                <div class="flex gap-2"><dt class="shrink-0 font-medium">時間</dt><dd>2026-10-01 13:30 – 15:30</dd></div>
+                <div class="flex gap-2"><dt class="shrink-0 font-medium">地點</dt><dd>資訊大樓 IB201</dd></div>
+                <div class="flex gap-2"><dt class="shrink-0 font-medium">報名</dt><dd>2026-09-29 截止</dd></div>
+              </dl>
+              <p class="mt-3 text-sm">邀請系友分享資料管線建置與 SQL 效能調校的實務經驗。</p>
+            </div>
+          </li>
+          <li class="card flex flex-col gap-4 sm:flex-row">
+            <div class="flex w-20 shrink-0 flex-col items-center rounded-lg bg-brand-blue/10 text-brand-navy py-3">
+              <span class="text-eyebrow font-semibold">2026/10</span>
+              <span class="text-3xl font-bold leading-none">19</span>
+            </div>
+            <div class="min-w-0 flex-1">
+              <div class="flex flex-wrap items-center gap-2">
+                <h2 class="text-lg font-bold text-brand-navy">資管週專題成果展</h2>
+                
+              </div>
+              <dl class="mt-2 grid gap-x-6 gap-y-1 text-sm text-muted sm:grid-cols-2">
+                <div class="flex gap-2"><dt class="shrink-0 font-medium">時間</dt><dd>2026-10-19 09:00 起至 2026-10-21 17:00</dd></div>
+                <div class="flex gap-2"><dt class="shrink-0 font-medium">地點</dt><dd>學生活動中心 1F</dd></div>
+                <div class="flex gap-2"><dt class="shrink-0 font-medium">報名</dt><dd>免報名，自由入場</dd></div>
+              </dl>
+              <p class="mt-3 text-sm">大四專題組別成果展示，開放全校師生參觀並投票選出人氣獎。</p>
+            </div>
+          </li>
+          <li class="card flex flex-col gap-4 sm:flex-row">
+            <div class="flex w-20 shrink-0 flex-col items-center rounded-lg bg-brand-blue/10 text-brand-navy py-3">
+              <span class="text-eyebrow font-semibold">2026/11</span>
+              <span class="text-3xl font-bold leading-none">14</span>
+            </div>
+            <div class="min-w-0 flex-1">
+              <div class="flex flex-wrap items-center gap-2">
+                <h2 class="text-lg font-bold text-brand-navy">系友回娘家餐會</h2>
+                
+              </div>
+              <dl class="mt-2 grid gap-x-6 gap-y-1 text-sm text-muted sm:grid-cols-2">
+                <div class="flex gap-2"><dt class="shrink-0 font-medium">時間</dt><dd>2026-11-14 18:00 – 21:00</dd></div>
+                <div class="flex gap-2"><dt class="shrink-0 font-medium">地點</dt><dd>第一餐廳 2F</dd></div>
+                <div class="flex gap-2"><dt class="shrink-0 font-medium">報名</dt><dd>2026-11-06 截止</dd></div>
+              </dl>
+              <p class="mt-3 text-sm">歡迎歷屆系友返校敘舊，餐會後有系友職涯分享時段。</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+    
+    <section id="staff" class="screen" aria-labelledby="staff-title">
+      <div class="container-site">
+        <h1 id="staff-title" class="section-title">師資介紹</h1>
+        <ul class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          
+          <li class="card flex gap-4">
+            <span aria-hidden="true" class="flex size-14 shrink-0 items-center justify-center rounded-full bg-brand-navy text-xl font-bold text-white">王</span>
+            <div class="min-w-0">
+              <div class="flex flex-wrap items-center gap-2">
+                <h2 class="text-lg font-bold text-brand-navy">王志明</h2>
+                <span class="badge-cat">教授</span>
+                <span class="badge-top">系主任</span>
+              </div>
+              <dl class="mt-2 space-y-1 text-sm text-muted">
+                <div class="flex gap-2"><dt class="shrink-0 font-medium">專長</dt><dd>資料庫系統、資料倉儲</dd></div>
+                <div class="flex gap-2"><dt class="shrink-0 font-medium">研究室</dt><dd>IB512</dd></div>
+                <div class="flex gap-2"><dt class="shrink-0 font-medium">分機</dt><dd>3101</dd></div>
+                <div class="flex gap-2"><dt class="shrink-0 font-medium">信箱</dt><dd class="break-all">cmwang@im.example.edu.tw</dd></div>
+              </dl>
+            </div>
+          </li>
+          <li class="card flex gap-4">
+            <span aria-hidden="true" class="flex size-14 shrink-0 items-center justify-center rounded-full bg-brand-navy text-xl font-bold text-white">林</span>
+            <div class="min-w-0">
+              <div class="flex flex-wrap items-center gap-2">
+                <h2 class="text-lg font-bold text-brand-navy">林美惠</h2>
+                <span class="badge-cat">教授</span>
+                
+              </div>
+              <dl class="mt-2 space-y-1 text-sm text-muted">
+                <div class="flex gap-2"><dt class="shrink-0 font-medium">專長</dt><dd>人工智慧、機器學習</dd></div>
+                <div class="flex gap-2"><dt class="shrink-0 font-medium">研究室</dt><dd>IB513</dd></div>
+                <div class="flex gap-2"><dt class="shrink-0 font-medium">分機</dt><dd>3102</dd></div>
+                <div class="flex gap-2"><dt class="shrink-0 font-medium">信箱</dt><dd class="break-all">mhlin@im.example.edu.tw</dd></div>
+              </dl>
+            </div>
+          </li>
+          <li class="card flex gap-4">
+            <span aria-hidden="true" class="flex size-14 shrink-0 items-center justify-center rounded-full bg-brand-navy text-xl font-bold text-white">陳</span>
+            <div class="min-w-0">
+              <div class="flex flex-wrap items-center gap-2">
+                <h2 class="text-lg font-bold text-brand-navy">陳建宏</h2>
+                <span class="badge-cat">副教授</span>
+                
+              </div>
+              <dl class="mt-2 space-y-1 text-sm text-muted">
+                <div class="flex gap-2"><dt class="shrink-0 font-medium">專長</dt><dd>資訊安全、網路管理</dd></div>
+                <div class="flex gap-2"><dt class="shrink-0 font-medium">研究室</dt><dd>IB515</dd></div>
+                <div class="flex gap-2"><dt class="shrink-0 font-medium">分機</dt><dd>3105</dd></div>
+                <div class="flex gap-2"><dt class="shrink-0 font-medium">信箱</dt><dd class="break-all">chchen@im.example.edu.tw</dd></div>
+              </dl>
+            </div>
+          </li>
+          <li class="card flex gap-4">
+            <span aria-hidden="true" class="flex size-14 shrink-0 items-center justify-center rounded-full bg-brand-navy text-xl font-bold text-white">張</span>
+            <div class="min-w-0">
+              <div class="flex flex-wrap items-center gap-2">
+                <h2 class="text-lg font-bold text-brand-navy">張淑芬</h2>
+                <span class="badge-cat">副教授</span>
+                
+              </div>
+              <dl class="mt-2 space-y-1 text-sm text-muted">
+                <div class="flex gap-2"><dt class="shrink-0 font-medium">專長</dt><dd>電子商務、專案管理</dd></div>
+                <div class="flex gap-2"><dt class="shrink-0 font-medium">研究室</dt><dd>IB516</dd></div>
+                <div class="flex gap-2"><dt class="shrink-0 font-medium">分機</dt><dd>3106</dd></div>
+                <div class="flex gap-2"><dt class="shrink-0 font-medium">信箱</dt><dd class="break-all">sfchang@im.example.edu.tw</dd></div>
+              </dl>
+            </div>
+          </li>
+          <li class="card flex gap-4">
+            <span aria-hidden="true" class="flex size-14 shrink-0 items-center justify-center rounded-full bg-brand-navy text-xl font-bold text-white">李</span>
+            <div class="min-w-0">
+              <div class="flex flex-wrap items-center gap-2">
+                <h2 class="text-lg font-bold text-brand-navy">李俊傑</h2>
+                <span class="badge-cat">助理教授</span>
+                
+              </div>
+              <dl class="mt-2 space-y-1 text-sm text-muted">
+                <div class="flex gap-2"><dt class="shrink-0 font-medium">專長</dt><dd>網頁程式設計、雲端服務</dd></div>
+                <div class="flex gap-2"><dt class="shrink-0 font-medium">研究室</dt><dd>IB520</dd></div>
+                <div class="flex gap-2"><dt class="shrink-0 font-medium">分機</dt><dd>3110</dd></div>
+                <div class="flex gap-2"><dt class="shrink-0 font-medium">信箱</dt><dd class="break-all">cjlee@im.example.edu.tw</dd></div>
+              </dl>
+            </div>
+          </li>
+          <li class="card flex gap-4">
+            <span aria-hidden="true" class="flex size-14 shrink-0 items-center justify-center rounded-full bg-brand-navy text-xl font-bold text-white">黃</span>
+            <div class="min-w-0">
+              <div class="flex flex-wrap items-center gap-2">
+                <h2 class="text-lg font-bold text-brand-navy">黃雅婷</h2>
+                <span class="badge-cat">講師</span>
+                
+              </div>
+              <dl class="mt-2 space-y-1 text-sm text-muted">
+                <div class="flex gap-2"><dt class="shrink-0 font-medium">專長</dt><dd>統計分析、資料視覺化</dd></div>
+                <div class="flex gap-2"><dt class="shrink-0 font-medium">研究室</dt><dd>IB522</dd></div>
+                <div class="flex gap-2"><dt class="shrink-0 font-medium">分機</dt><dd>（未提供）</dd></div>
+                <div class="flex gap-2"><dt class="shrink-0 font-medium">信箱</dt><dd class="break-all">ythuang@im.example.edu.tw</dd></div>
+              </dl>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+    
+    <section id="albums" class="screen" aria-labelledby="albums-title">
+      <div class="container-site space-y-12">
+        <div>
+          <h1 id="albums-title" class="section-title">系所相簿</h1>
+          <ul class="grid gap-5 sm:grid-cols-2">
+            
+            <li class="card overflow-hidden p-0">
+              <a href="#album-1" class="block">
+                <img src="./images/photo/album-expo-1.webp" alt="2026 資管週專題成果展封面：專題組別向來賓介紹作品" width="384" height="256" class="aspect-[3/2] w-full object-cover" loading="lazy" />
+              </a>
+              <div class="p-5">
+                <h2 class="text-lg font-bold text-brand-navy"><a href="#album-1" class="hover:underline">2026 資管週專題成果展</a></h2>
+                <p class="meta mt-1">拍攝日期 2026-05-13 ・ 共 3 張</p>
+                <p class="mt-2 text-sm">大四專題成果展示與頒獎典禮花絮。</p>
+              </div>
+            </li>
+            <li class="card overflow-hidden p-0">
+              <a href="#album-2" class="block">
+                <img src="./images/photo/album-alumni-2.webp" alt="2025 系友回娘家封面：業界系友經驗分享" width="384" height="256" class="aspect-[3/2] w-full object-cover" loading="lazy" />
+              </a>
+              <div class="p-5">
+                <h2 class="text-lg font-bold text-brand-navy"><a href="#album-2" class="hover:underline">2025 系友回娘家</a></h2>
+                <p class="meta mt-1">拍攝日期 2025-11-15 ・ 共 3 張</p>
+                <p class="mt-2 text-sm">歷屆系友返校餐敘與職涯分享。</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+        
+        <div id="album-1">
+          <h2 class="mb-1 text-xl font-bold text-brand-navy">2026 資管週專題成果展</h2>
+          <p class="meta mb-4">2026-05-13 ・ 3 張照片</p>
+          <ul class="grid gap-4 sm:grid-cols-3">
+            
+            <li class="card overflow-hidden p-0">
+              <img src="./images/photo/album-expo-1.webp" alt="專題組別向來賓介紹作品" width="384" height="256" class="aspect-[3/2] w-full object-cover" loading="lazy" />
+              <figcaption class="flex items-center justify-between gap-2 px-4 py-3 text-sm"><span>專題組別向來賓介紹作品</span><span class="badge-tag">封面</span></figcaption>
+            </li>
+            <li class="card overflow-hidden p-0">
+              <img src="./images/photo/album-expo-2.webp" alt="App 展示與現場試用" width="384" height="256" class="aspect-[3/2] w-full object-cover" loading="lazy" />
+              <figcaption class="flex items-center justify-between gap-2 px-4 py-3 text-sm"><span>App 展示與現場試用</span></figcaption>
+            </li>
+            <li class="card overflow-hidden p-0">
+              <img src="./images/photo/album-expo-3.webp" alt="頒獎典禮大合照" width="384" height="256" class="aspect-[3/2] w-full object-cover" loading="lazy" />
+              <figcaption class="flex items-center justify-between gap-2 px-4 py-3 text-sm"><span>頒獎典禮大合照</span></figcaption>
+            </li>
+          </ul>
+        </div>
+        <div id="album-2">
+          <h2 class="mb-1 text-xl font-bold text-brand-navy">2025 系友回娘家</h2>
+          <p class="meta mb-4">2025-11-15 ・ 3 張照片</p>
+          <ul class="grid gap-4 sm:grid-cols-3">
+            
+            <li class="card overflow-hidden p-0">
+              <img src="./images/photo/album-alumni-1.webp" alt="系友與師長餐敘" width="384" height="256" class="aspect-[3/2] w-full object-cover" loading="lazy" />
+              <figcaption class="flex items-center justify-between gap-2 px-4 py-3 text-sm"><span>系友與師長餐敘</span></figcaption>
+            </li>
+            <li class="card overflow-hidden p-0">
+              <img src="./images/photo/album-alumni-2.webp" alt="業界系友經驗分享" width="384" height="256" class="aspect-[3/2] w-full object-cover" loading="lazy" />
+              <figcaption class="flex items-center justify-between gap-2 px-4 py-3 text-sm"><span>業界系友經驗分享</span><span class="badge-tag">封面</span></figcaption>
+            </li>
+            <li class="card overflow-hidden p-0">
+              <img src="./images/photo/album-alumni-3.webp" alt="校園草地大合照" width="384" height="256" class="aspect-[3/2] w-full object-cover" loading="lazy" />
+              <figcaption class="flex items-center justify-between gap-2 px-4 py-3 text-sm"><span>校園草地大合照</span></figcaption>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    
+    <section id="faq" class="screen" aria-labelledby="faq-title">
+      <div class="container-site max-w-3xl space-y-10">
+        <h1 id="faq-title" class="section-title">常見問題</h1>
+        
+        <div>
+          <h2 class="mb-3 text-xl font-bold text-brand-navy">選課問題</h2>
+          <div class="space-y-3">
+            
+            <details class="card group p-0">
+              <summary class="flex min-h-11 cursor-pointer items-start gap-3 px-5 py-4 font-medium marker:content-none">
+                <span class="text-brand-orange">Q1</span><span>加退選期間可以加選其他系的課嗎？</span>
+              </summary>
+              <p class="border-t border-line px-5 py-4 text-sm leading-relaxed text-muted">可以，外系課程依該系規定加選，最多可承認 12 學分為選修學分。</p>
+            </details>
+            <details class="card group p-0">
+              <summary class="flex min-h-11 cursor-pointer items-start gap-3 px-5 py-4 font-medium marker:content-none">
+                <span class="text-brand-orange">Q2</span><span>必修課衝堂該怎麼處理？</span>
+              </summary>
+              <p class="border-t border-line px-5 py-4 text-sm leading-relaxed text-muted">請先向系辦登記，系辦將協調開課教師調整時段，或安排下學期補修。</p>
+            </details>
+          </div>
+        </div>
+        <div>
+          <h2 class="mb-3 text-xl font-bold text-brand-navy">畢業門檻</h2>
+          <div class="space-y-3">
+            
+            <details class="card group p-0">
+              <summary class="flex min-h-11 cursor-pointer items-start gap-3 px-5 py-4 font-medium marker:content-none">
+                <span class="text-brand-orange">Q1</span><span>畢業前需要通過哪些英文門檻？</span>
+              </summary>
+              <p class="border-t border-line px-5 py-4 text-sm leading-relaxed text-muted">需取得 TOEIC 550 分以上或同等級證明，未達標者可修習英文補強課程抵免。</p>
+            </details>
+            <details class="card group p-0">
+              <summary class="flex min-h-11 cursor-pointer items-start gap-3 px-5 py-4 font-medium marker:content-none">
+                <span class="text-brand-orange">Q2</span><span>專題成果需要在什麼時候完成發表？</span>
+              </summary>
+              <p class="border-t border-line px-5 py-4 text-sm leading-relaxed text-muted">大四下學期資管週成果展前完成，並繳交專題報告書與系統原始碼。</p>
+            </details>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <section id="contact" class="screen" aria-labelledby="contact-title">
+      <div class="container-site grid gap-10 lg:grid-cols-3">
+        <div class="lg:col-span-2">
+          <h1 id="contact-title" class="section-title">意見信箱</h1>
+          <form id="contact-form" class="card space-y-5" novalidate>
+            <div class="grid gap-5 sm:grid-cols-2">
+              <label class="block text-sm font-medium">姓名<input type="text" name="name" class="field" autocomplete="name" /></label>
+              <label class="block text-sm font-medium">電子郵件<input type="email" name="email" class="field" autocomplete="email" /></label>
+            </div>
+            <label class="block text-sm font-medium">主旨<input type="text" name="subject" class="field" /></label>
+            <label class="block text-sm font-medium">內容<textarea name="content" rows="5" class="field"></textarea></label>
+            <p class="meta">送出後系辦將於 3 個工作日內回覆，處理狀態可電洽系辦查詢。</p>
+            <button type="submit" class="btn-primary">送出意見</button>
+            <p id="contact-note" class="rounded-lg bg-state-ok/10 px-4 py-3 text-sm text-state-ok" tabindex="-1" hidden>此為練習用示意頁面，表單不會真正送出。</p>
+          </form>
+        </div>
+        <aside class="card self-start">
+          <h2 class="text-lg font-bold text-brand-navy">系辦公室</h2>
+          <dl class="mt-3 space-y-2 text-sm text-muted">
+            <div class="flex gap-2"><dt class="shrink-0 font-medium">地址</dt><dd>潮港市海濱路 100 號 資訊大樓 5 樓</dd></div>
+            <div class="flex gap-2"><dt class="shrink-0 font-medium">電話</dt><dd>(07) 123-4567 轉 3100</dd></div>
+            <div class="flex gap-2"><dt class="shrink-0 font-medium">信箱</dt><dd>im@im.example.edu.tw</dd></div>
+            <div class="flex gap-2"><dt class="shrink-0 font-medium">時間</dt><dd>週一至週五 08:30 – 17:00</dd></div>
+          </dl>
+        </aside>
+      </div>
+    </section>
+    
+    <section id="admin" class="screen" aria-labelledby="admin-title">
+      <div class="container-site space-y-12">
+        <div>
+          <h1 id="admin-title" class="section-title">後台管理</h1>
+          <p class="card border-brand-orange/40 bg-brand-orange/5 text-sm">此頁模擬網站管理員登入後看到的畫面，會顯示前台隱藏的資料（已下架公告、未顯示的問答、留言處理狀態）。</p>
+        </div>
+
+        <div>
+          <h2 class="mb-3 text-xl font-bold text-brand-navy">公告管理</h2>
+          <div class="table-wrap">
+            <table class="table">
+              <thead><tr>
+                <th scope="col" class="num">編號</th><th scope="col">標題</th><th scope="col">分類</th><th scope="col">標籤</th><th scope="col">置頂</th>
+                <th scope="col">發布時間</th><th scope="col">下架時間</th><th scope="col" class="num">點閱</th><th scope="col" class="num">附件</th><th scope="col">狀態</th>
+              </tr></thead>
+              <tbody>
+              
+                <tr>
+                  <td class="num">1</td>
+                  <td class="min-w-56">115 學年度第 1 學期選課注意事項</td>
+                  <td class="whitespace-nowrap">系所公告</td>
+                  <td class="whitespace-nowrap">—</td>
+                  <td>是</td>
+                  <td class="whitespace-nowrap">2026-08-25 09:00</td>
+                  <td class="whitespace-nowrap">2026-09-30 23:59</td>
+                  <td class="num">1,250</td>
+                  <td class="num">2</td>
+                  <td><span class="badge-ok">上架中</span></td>
+                </tr>
+                <tr>
+                  <td class="num">2</td>
+                  <td class="min-w-56">116 學年度碩士班甄試招生說明會</td>
+                  <td class="whitespace-nowrap">招生資訊</td>
+                  <td class="whitespace-nowrap">招生</td>
+                  <td>是</td>
+                  <td class="whitespace-nowrap">2026-09-01 10:00</td>
+                  <td class="whitespace-nowrap">2026-10-15 23:59</td>
+                  <td class="num">863</td>
+                  <td class="num">1</td>
+                  <td><span class="badge-ok">上架中</span></td>
+                </tr>
+                <tr>
+                  <td class="num">3</td>
+                  <td class="min-w-56">2026 全國大專校院資訊應用服務創新競賽 徵件開始</td>
+                  <td class="whitespace-nowrap">競賽活動</td>
+                  <td class="whitespace-nowrap">競賽、獎學金</td>
+                  <td>否</td>
+                  <td class="whitespace-nowrap">2026-09-05 14:30</td>
+                  <td class="whitespace-nowrap">2026-11-01 23:59</td>
+                  <td class="num">412</td>
+                  <td class="num">0</td>
+                  <td><span class="badge-ok">上架中</span></td>
+                </tr>
+                <tr>
+                  <td class="num">4</td>
+                  <td class="min-w-56">暑期實習成果發表會圓滿落幕</td>
+                  <td class="whitespace-nowrap">就業實習</td>
+                  <td class="whitespace-nowrap">實習</td>
+                  <td>否</td>
+                  <td class="whitespace-nowrap">2026-09-08 16:00</td>
+                  <td class="whitespace-nowrap">無期限</td>
+                  <td class="num">305</td>
+                  <td class="num">0</td>
+                  <td><span class="badge-ok">上架中</span></td>
+                </tr>
+                <tr>
+                  <td class="num">5</td>
+                  <td class="min-w-56">資訊大樓電梯年度保養停用公告</td>
+                  <td class="whitespace-nowrap">系所公告</td>
+                  <td class="whitespace-nowrap">—</td>
+                  <td>否</td>
+                  <td class="whitespace-nowrap">2026-09-10 08:30</td>
+                  <td class="whitespace-nowrap">2026-09-12 18:00</td>
+                  <td class="num">198</td>
+                  <td class="num">0</td>
+                  <td><span class="badge-off">已下架</span></td>
+                </tr>
+                <tr>
+                  <td class="num">6</td>
+                  <td class="min-w-56">第 12 屆資管盃程式設計競賽得獎名單</td>
+                  <td class="whitespace-nowrap">競賽活動</td>
+                  <td class="whitespace-nowrap">競賽</td>
+                  <td>否</td>
+                  <td class="whitespace-nowrap">2026-09-12 11:00</td>
+                  <td class="whitespace-nowrap">無期限</td>
+                  <td class="num">677</td>
+                  <td class="num">1</td>
+                  <td><span class="badge-ok">上架中</span></td>
+                </tr>
+                <tr>
+                  <td class="num">7</td>
+                  <td class="min-w-56">智星科技 2027 校園徵才職缺資訊</td>
+                  <td class="whitespace-nowrap">就業實習</td>
+                  <td class="whitespace-nowrap">實習</td>
+                  <td>否</td>
+                  <td class="whitespace-nowrap">2026-09-14 09:30</td>
+                  <td class="whitespace-nowrap">2026-12-31 23:59</td>
+                  <td class="num">154</td>
+                  <td class="num">0</td>
+                  <td><span class="badge-ok">上架中</span></td>
+                </tr>
+                <tr>
+                  <td class="num">8</td>
+                  <td class="min-w-56">116 學年度大學部轉學考招生簡章公告</td>
+                  <td class="whitespace-nowrap">招生資訊</td>
+                  <td class="whitespace-nowrap">招生</td>
+                  <td>否</td>
+                  <td class="whitespace-nowrap">2026-09-15 17:00</td>
+                  <td class="whitespace-nowrap">2026-10-31 23:59</td>
+                  <td class="num">89</td>
+                  <td class="num">2</td>
+                  <td><span class="badge-ok">上架中</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="grid gap-8 lg:grid-cols-2">
+          <div>
+            <h2 class="mb-3 text-xl font-bold text-brand-navy">公告分類管理</h2>
+            <div class="table-wrap">
+              <table class="table">
+                <thead><tr><th scope="col">分類名稱</th><th scope="col" class="num">顯示順序</th><th scope="col" class="num">公告數</th></tr></thead>
+                <tbody>
+                
+                  <tr><td>系所公告</td><td class="num">1</td><td class="num">2</td></tr>
+                  <tr><td>招生資訊</td><td class="num">2</td><td class="num">2</td></tr>
+                  <tr><td>競賽活動</td><td class="num">3</td><td class="num">2</td></tr>
+                  <tr><td>就業實習</td><td class="num">4</td><td class="num">2</td></tr>
+                  <tr><td>學術演講</td><td class="num">5</td><td class="num">0</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div>
+            <h2 class="mb-3 text-xl font-bold text-brand-navy">標籤管理</h2>
+            <div class="table-wrap">
+              <table class="table">
+                <thead><tr><th scope="col">標籤名稱</th><th scope="col" class="num">使用於幾則公告</th></tr></thead>
+                <tbody>
+                <tr><td>#招生</td><td class="num">2</td></tr><tr><td>#競賽</td><td class="num">2</td></tr><tr><td>#獎學金</td><td class="num">1</td></tr><tr><td>#講座</td><td class="num">0</td></tr><tr><td>#實習</td><td class="num">2</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h2 class="mb-3 text-xl font-bold text-brand-navy">常見問題管理</h2>
+          <div class="table-wrap">
+            <table class="table">
+              <thead><tr><th scope="col">分類</th><th scope="col" class="num">排序</th><th scope="col">問題</th><th scope="col">答案</th><th scope="col">前台顯示</th></tr></thead>
+              <tbody>
+              
+                <tr>
+                  <td class="whitespace-nowrap">選課問題</td>
+                  <td class="num">1</td>
+                  <td class="min-w-48">加退選期間可以加選其他系的課嗎？</td>
+                  <td class="min-w-64 text-muted">可以，外系課程依該系規定加選，最多可承認 12 學分為選修學分。</td>
+                  <td><span class="badge-ok">顯示</span></td>
+                </tr>
+                <tr>
+                  <td class="whitespace-nowrap">選課問題</td>
+                  <td class="num">2</td>
+                  <td class="min-w-48">必修課衝堂該怎麼處理？</td>
+                  <td class="min-w-64 text-muted">請先向系辦登記，系辦將協調開課教師調整時段，或安排下學期補修。</td>
+                  <td><span class="badge-ok">顯示</span></td>
+                </tr>
+                <tr>
+                  <td class="whitespace-nowrap">選課問題</td>
+                  <td class="num">3</td>
+                  <td class="min-w-48">人工加簽單要找誰簽？</td>
+                  <td class="min-w-64 text-muted">此答案尚在修訂中，暫不對外顯示。</td>
+                  <td><span class="badge-off">隱藏</span></td>
+                </tr>
+                <tr>
+                  <td class="whitespace-nowrap">畢業門檻</td>
+                  <td class="num">1</td>
+                  <td class="min-w-48">畢業前需要通過哪些英文門檻？</td>
+                  <td class="min-w-64 text-muted">需取得 TOEIC 550 分以上或同等級證明，未達標者可修習英文補強課程抵免。</td>
+                  <td><span class="badge-ok">顯示</span></td>
+                </tr>
+                <tr>
+                  <td class="whitespace-nowrap">畢業門檻</td>
+                  <td class="num">2</td>
+                  <td class="min-w-48">專題成果需要在什麼時候完成發表？</td>
+                  <td class="min-w-64 text-muted">大四下學期資管週成果展前完成，並繳交專題報告書與系統原始碼。</td>
+                  <td><span class="badge-ok">顯示</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div>
+          <h2 class="mb-3 text-xl font-bold text-brand-navy">留言管理</h2>
+          <div class="table-wrap">
+            <table class="table">
+              <thead><tr>
+                <th scope="col" class="num">編號</th><th scope="col">姓名</th><th scope="col">電子郵件</th><th scope="col">主旨</th><th scope="col">內容</th>
+                <th scope="col">留言時間</th><th scope="col">狀態</th><th scope="col">回覆時間</th>
+              </tr></thead>
+              <tbody>
+              
+                <tr>
+                  <td class="num">1</td>
+                  <td class="whitespace-nowrap">吳同學</td>
+                  <td>wu.student@example.com</td>
+                  <td class="min-w-32">轉學考報名問題</td>
+                  <td class="min-w-56 text-muted">想請問轉學考可以同時報名二年級與三年級嗎？</td>
+                  <td class="whitespace-nowrap">2026-09-02 10:12</td>
+                  <td><span class="badge-ok">已回覆</span></td>
+                  <td class="whitespace-nowrap">2026-09-03 09:30</td>
+                </tr>
+                <tr>
+                  <td class="num">2</td>
+                  <td class="whitespace-nowrap">陳家長</td>
+                  <td>chen.parent@example.com</td>
+                  <td class="min-w-32">新生住宿申請</td>
+                  <td class="min-w-56 text-muted">孩子今年入學，請問住宿申請的時程與方式？</td>
+                  <td class="whitespace-nowrap">2026-09-05 15:40</td>
+                  <td><span class="badge-ok">已回覆</span></td>
+                  <td class="whitespace-nowrap">2026-09-05 17:05</td>
+                </tr>
+                <tr>
+                  <td class="num">3</td>
+                  <td class="whitespace-nowrap">劉先生</td>
+                  <td>liu@brightstar.example.com</td>
+                  <td class="min-w-32">校園徵才合作洽詢</td>
+                  <td class="min-w-56 text-muted">本公司希望於 11 月至貴系舉辦徵才說明會，請問聯絡窗口為何？</td>
+                  <td class="whitespace-nowrap">2026-09-11 09:20</td>
+                  <td><span class="badge-off">未處理</span></td>
+                  <td class="whitespace-nowrap">—</td>
+                </tr>
+                <tr>
+                  <td class="num">4</td>
+                  <td class="whitespace-nowrap">林同學</td>
+                  <td>lin.student@example.com</td>
+                  <td class="min-w-32">選課系統無法登入</td>
+                  <td class="min-w-56 text-muted">輸入學號密碼後一直顯示系統忙碌，已重試多次。</td>
+                  <td class="whitespace-nowrap">2026-09-14 08:05</td>
+                  <td><span class="badge-warn">處理中</span></td>
+                  <td class="whitespace-nowrap">—</td>
+                </tr>
+                <tr>
+                  <td class="num">5</td>
+                  <td class="whitespace-nowrap">匿名</td>
+                  <td>anon@example.com</td>
+                  <td class="min-w-32">資訊大樓電梯異音</td>
+                  <td class="min-w-56 text-muted">左側電梯上升時有明顯異音，建議儘速檢修。</td>
+                  <td class="whitespace-nowrap">2026-09-15 20:48</td>
+                  <td><span class="badge-off">未處理</span></td>
+                  <td class="whitespace-nowrap">—</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div>
+          <h2 class="mb-3 text-xl font-bold text-brand-navy">友善連結管理</h2>
+          <div class="table-wrap">
+            <table class="table">
+              <thead><tr><th scope="col">分類</th><th scope="col" class="num">排序</th><th scope="col">名稱</th><th scope="col">網址</th><th scope="col">另開視窗</th></tr></thead>
+              <tbody>
+              
+                <tr>
+                  <td class="whitespace-nowrap">校內單位</td>
+                  <td class="num">1</td>
+                  <td class="whitespace-nowrap">教務處</td>
+                  <td class="break-all">https://www.example.edu.tw/academic</td>
+                  <td>否</td>
+                </tr>
+                <tr>
+                  <td class="whitespace-nowrap">校內單位</td>
+                  <td class="num">2</td>
+                  <td class="whitespace-nowrap">學務處</td>
+                  <td class="break-all">https://www.example.edu.tw/student</td>
+                  <td>否</td>
+                </tr>
+                <tr>
+                  <td class="whitespace-nowrap">校內單位</td>
+                  <td class="num">3</td>
+                  <td class="whitespace-nowrap">圖書館</td>
+                  <td class="break-all">https://lib.example.edu.tw</td>
+                  <td>是</td>
+                </tr>
+                <tr>
+                  <td class="whitespace-nowrap">相關資源</td>
+                  <td class="num">1</td>
+                  <td class="whitespace-nowrap">MariaDB 官方文件</td>
+                  <td class="break-all">https://mariadb.com/kb/en/</td>
+                  <td>是</td>
+                </tr>
+                <tr>
+                  <td class="whitespace-nowrap">相關資源</td>
+                  <td class="num">2</td>
+                  <td class="whitespace-nowrap">drawSQL</td>
+                  <td class="break-all">https://drawsql.app</td>
+                  <td>是</td>
+                </tr>
+                <tr>
+                  <td class="whitespace-nowrap">相關資源</td>
+                  <td class="num">3</td>
+                  <td class="whitespace-nowrap">HeidiSQL</td>
+                  <td class="break-all">https://www.heidisql.com</td>
+                  <td>是</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  
+  <footer class="mt-16 bg-brand-navy text-white">
+    <div class="container-site grid gap-8 py-12 sm:grid-cols-3">
+      
+      <nav aria-labelledby="footer-links-1">
+        <h2 id="footer-links-1" class="mb-3 font-bold">校內單位</h2>
+        <ul class="space-y-2 text-sm text-white/85">
+          
+          <li><a href="https://www.example.edu.tw/academic" class="inline-flex min-h-11 items-center hover:underline">教務處</a></li>
+          <li><a href="https://www.example.edu.tw/student" class="inline-flex min-h-11 items-center hover:underline">學務處</a></li>
+          <li><a href="https://lib.example.edu.tw" class="inline-flex min-h-11 items-center hover:underline" target="_blank" rel="noopener">圖書館<span class="sr-only">（另開新視窗）</span><span aria-hidden="true" class="ml-1 text-white/60">↗</span></a></li>
+        </ul>
+      </nav>
+      <nav aria-labelledby="footer-links-2">
+        <h2 id="footer-links-2" class="mb-3 font-bold">相關資源</h2>
+        <ul class="space-y-2 text-sm text-white/85">
+          
+          <li><a href="https://mariadb.com/kb/en/" class="inline-flex min-h-11 items-center hover:underline" target="_blank" rel="noopener">MariaDB 官方文件<span class="sr-only">（另開新視窗）</span><span aria-hidden="true" class="ml-1 text-white/60">↗</span></a></li>
+          <li><a href="https://drawsql.app" class="inline-flex min-h-11 items-center hover:underline" target="_blank" rel="noopener">drawSQL<span class="sr-only">（另開新視窗）</span><span aria-hidden="true" class="ml-1 text-white/60">↗</span></a></li>
+          <li><a href="https://www.heidisql.com" class="inline-flex min-h-11 items-center hover:underline" target="_blank" rel="noopener">HeidiSQL<span class="sr-only">（另開新視窗）</span><span aria-hidden="true" class="ml-1 text-white/60">↗</span></a></li>
+        </ul>
+      </nav>
+      <div class="text-sm text-white/85">
+        <h2 class="mb-3 font-bold">資訊管理系</h2>
+        <p>潮港市海濱路 100 號 資訊大樓 5 樓</p>
+        <p class="mt-1">(07) 123-4567 轉 3100</p>
+        <p class="mt-4 text-white/60">本網站為資料庫課程練習用的虛構系所網站，所有人物、單位與資料皆為虛構。</p>
+      </div>
+    </div>
+  </footer>
+
+  <button id="go-top" class="fixed bottom-4 right-4 z-50 hidden size-14 cursor-pointer items-center justify-center rounded-full bg-brand-orange shadow-2xl transition hover:-translate-y-1 sm:bottom-8 sm:right-8" aria-label="回到頂部">
+    <img src="./images/icon/icon-arrow-up.svg" alt="" width="24" height="24" class="size-6" />
+  </button>
+
+  <script src="./js/main.js?v=20260916-01" defer></script>
+</body>
+</html>
